@@ -94,7 +94,7 @@ class AfreecaExtractor(object):
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "lxml")
             name = soup.find('ul', id="vodDetailView").find('li').find('span').text.split(' ')[0].replace('-', '')
-            video_name = bj_name + '_' + name + '.mp4'
+            video_name = bj_name + '_' + name
             print("Video Name: ", video_name)
             return video_name
         else:
@@ -128,6 +128,6 @@ class AfreecaExtractor(object):
         index = 1
         for m3u8_playlist in m3u8_playlist_list:
             true_m3u8_playlist = self.resolution_confirmation(m3u8_playlist, index)
-            streaming_part_name = video_name + '_' + str(index)
+            streaming_part_name = video_name + '_' + str(index) + '.mp4'
             index += 1
             return true_m3u8_playlist, streaming_part_name
