@@ -125,9 +125,12 @@ class AfreecaExtractor(object):
         print("Downloading All {} segments.".format(len(m3u8_playlist_list)))
         video_name = self.get_video_name(bj_name)
 
+        streaming_list = {}
         index = 1
         for m3u8_playlist in m3u8_playlist_list:
             true_m3u8_playlist = self.resolution_confirmation(m3u8_playlist, index)
             streaming_part_name = video_name + '_' + str(index) + '.mp4'
             index += 1
-            return true_m3u8_playlist, streaming_part_name
+            streaming_list[streaming_part_name] = true_m3u8_playlist
+
+        return streaming_list

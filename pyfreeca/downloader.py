@@ -210,7 +210,10 @@ class Downloader:
 
 
 if __name__ == '__main__':
-    m3u8_url, streaming_name = AfreecaExtractor().run()
-    current_directory = os.getcwd()
-    downloader = Downloader(50, streaming_name)
-    downloader.run(m3u8_url, streaming_name, current_directory)
+    streaming_list = AfreecaExtractor().run()
+    for streaming_part in streaming_list.items():
+        streaming_name = streaming_part[0]
+        m3u8_url = streaming_part[1]
+        current_directory = os.getcwd()
+        downloader = Downloader(50, streaming_name)
+        downloader.run(m3u8_url, streaming_name, current_directory)
