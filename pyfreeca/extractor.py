@@ -129,7 +129,10 @@ class AfreecaExtractor(object):
         index = 1
         for m3u8_playlist in m3u8_playlist_list:
             true_m3u8_playlist = self.resolution_confirmation(m3u8_playlist, index)
-            streaming_part_name = video_name + '_' + str(index) + '.mp4'
+            if len(m3u8_playlist) == 1:
+                streaming_part_name = video_name + '.mp4'
+            else:
+                streaming_part_name = video_name + '_' + str(index) + '.mp4'
             index += 1
             streaming_list[streaming_part_name] = true_m3u8_playlist
 
