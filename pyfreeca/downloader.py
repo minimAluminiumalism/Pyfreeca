@@ -212,5 +212,5 @@ class Downloader:
 if __name__ == '__main__':
     m3u8_url, streaming_name = AfreecaExtractor().run()
     current_directory = os.getcwd()
-    downloader = Downloader(20, streaming_name)
+    downloader = Downloader(50, streaming_name)
     downloader.run(m3u8_url, streaming_name, current_directory)
