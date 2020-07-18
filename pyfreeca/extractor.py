@@ -67,7 +67,11 @@ class AfreecaExtractor(object):
         if response.status_code == 200:
             html = response.text
             soup = BeautifulSoup(html, "lxml")
-            items = soup.find("video", thumbnail="true").find_all("file")
+            items = soup.find("video", thumbnail="true")
+            if not items:
+                items = soup.find_all('video', {"duration": True})
+            else:
+                items = items.find_all("file")
             # items = soup.find("video", {"duration": True})
 
             m3u8_playlist_list = []
