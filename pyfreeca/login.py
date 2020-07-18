@@ -22,4 +22,3 @@ def login_func():
 
     login_in = session.post(login_url, data=form_data)
     return session
-

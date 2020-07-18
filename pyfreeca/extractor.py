@@ -9,11 +9,11 @@ from bs4 import BeautifulSoup
 class AfreecaExtractor(object):
     def __init__(self):
         URL = input("stream url: ")
+        self.video_name_suffix = URL.split('/')[-1]
         self.base_url = str(URL)
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36",
             "Origin": "http://vod.afreecatv.com",
-
         }
         self.username = json.load(open("../config.json", "r")).get("username")
         self.password = json.load(open("../config.json", "r")).get("password")
@@ -130,9 +130,9 @@ class AfreecaExtractor(object):
         for m3u8_playlist in m3u8_playlist_list:
             true_m3u8_playlist = self.resolution_confirmation(m3u8_playlist, index)
             if len(m3u8_playlist_list) == 1:
-                streaming_part_name = video_name + '.mp4'
+                streaming_part_name = video_name + self.video_name_suffix + '.mp4'
             else:
-                streaming_part_name = video_name + '_' + str(index) + '.mp4'
+                streaming_part_name = video_name + self.video_name_suffix + '_' + str(index) + '.mp4'
             index += 1
             streaming_list[streaming_part_name] = true_m3u8_playlist
 
